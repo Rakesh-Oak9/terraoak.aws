@@ -3,12 +3,12 @@ resource "aws_lb" "elbv2_sac" {
   load_balancer_type = "application"
   drop_invalid_header_fields = true
   desync_mitigation_mode = "monitor"
-  internal = false
+  internal = true
   subnets = [aws_subnet.apigwv2_subnet.id, aws_subnet.apigwv2_subnet_2.id]  
 
 }
 
-resource "aws_lb_listener" "elbv2_listener" {
+resource "aws_lb_listener" "elbv2_listener" { # oak9:  should be set to any of https, tls
   load_balancer_arn = aws_lb.elbv2_sac.arn
   port = 99
 
@@ -27,7 +27,7 @@ resource "aws_lb_target_group" "elbv2_target_group" {
   target_type = "instance"
   vpc_id   = aws_vpc.apigwv2_vpc.id
   port     = 80
-  protocol = "HTTP"
+  protocol = "HTTP" # oak9: protocol should be set to any of ['https', 'tls']
 
   health_check {
     enabled = true

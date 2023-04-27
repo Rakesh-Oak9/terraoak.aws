@@ -70,5 +70,6 @@ resource "aws_security_group" "ec2_instance_security_group_default" {
     to_port         = 0
     protocol        = "-1"
     cidr_blocks     = ["0.0.0.0/0"]
+  # oak9: Explicitly define destination IP addresses for egress rules
   }
 }

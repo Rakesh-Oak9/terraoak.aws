@@ -11,7 +11,7 @@ resource "aws_rds_cluster" "sac_rds_cluster" {
   db_subnet_group_name = aws_db_subnet_group.sac_rds_subnet_group.name
   
   engine_version          = "8.0.mysql_aurora.3.03.0"
-  storage_encrypted   = false
+  storage_encrypted   = true
   iam_database_authentication_enabled = false
 }
 
@@ -77,6 +77,8 @@ resource "aws_secretsmanager_secret_policy" "sac_secrets_manager_policy" {
   secret_arn = aws_secretsmanager_secret.sac_secrets_manager.arn
 
   policy = <<POLICY
+  # oak9: Secrets policy grants broad access to principals using * (wildcards)
+  # oak9: Secrets policy allows any action using * (wildcards)
 {
   "Version": "2012-10-17",
   "Statement": [
