@@ -4,7 +4,7 @@
   domain_name_configuration {
     certificate_arn = ""
     endpoint_type   = "REGIONAL"
-    security_policy = "TLS_1_1"
+    security_policy = "tls_1_2"
   }
 }
 
