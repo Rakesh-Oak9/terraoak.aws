@@ -23,6 +23,7 @@ resource "aws_security_group" "security-group-lambda" {
     to_port          = 0
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
+    # oak9: Explicitly define destination IP addresses for egress rules
     ipv6_cidr_blocks = ["::/0"]
   }
 }
